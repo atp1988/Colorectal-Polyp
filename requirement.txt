@@ -1,0 +1,6 @@
+pytorch
+opencv
+pandas
+matplotlib
+torchmetrics
+
