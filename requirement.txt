@@ -1,6 +1,9 @@
-pytorch
-opencv
-pandas
-matplotlib
+torch
+torchvision
 torchmetrics
-
+opencv
+timm
+colorama
+albumentations
+matplotlib
+tabulate
