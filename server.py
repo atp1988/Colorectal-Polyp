@@ -1,3 +1,4 @@
+''' this file shows the prediction and mask of Polyp segmenatation through fastAPI '''
 
 import torch
 import torch.nn as nn
