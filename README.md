@@ -13,14 +13,19 @@ This repo provides a clean implementation of Polyp Segmentation in Pytorch on st
 - [x] Fully integrated with `absl-py` from [abseil.io](https://abseil.io)
 - [x] Clean implementation
 - [x] MIT License
-<<<<<<< HEAD
-=======
 
 ![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/predictions/pred5.png)
->>>>>>> 48fe73a2b40f8686e458a60df1e0cd951cca4725
 
 #### Dependency Installation
 
 ```bash
 pip install -r requirements.txt
 ```
+
+### Detection
+
+```bash
+python test.py --image_path data/images/xxx.jpg --mask_path data/masks/xxx.jpg 
+```
+
+![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/predictions/pred4.png)
