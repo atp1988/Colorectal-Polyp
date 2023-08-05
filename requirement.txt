@@ -1,9 +1,0 @@
-torch
-torchvision
-torchmetrics
-opencv
-timm
-colorama
-albumentations
-matplotlib
-tabulate
