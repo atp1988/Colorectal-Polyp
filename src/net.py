@@ -9,22 +9,21 @@ from absl.flags import FLAGS
 from pvt import *
 from modules import *
 
-# flags.DEFINE_integer('num_classes', 1, 'number of classes in the model')
 
 class Polyp_Net(nn.Module):
     def __init__(self,
-                num_classes,
+                backbone_weights=None,
                 ch=[64,128,320,512], ## channel
                 ):
         super(Polyp_Net ,self).__init__()
 
         self.backbone = pvt_v2_b2()
-        # path = '/content/drive/MyDrive/CASCADE/pretrained_pth/pvt/pvt_v2_b2.pth'
-        # save_model = torch.load(path)
-        # model_dict = self.backbone.state_dict()
-        # state_dict = {k: v for k, v in save_model.items() if k in model_dict.keys()}
-        # model_dict.update(state_dict)
-        # self.backbone.load_state_dict(model_dict)
+        if backbone_weights is not None:
+            save_model = torch.load(backbone_weights)
+            model_dict = self.backbone.state_dict()
+            state_dict = {k: v for k, v in save_model.items() if k in model_dict.keys()}
+            model_dict.update(state_dict)
+            self.backbone.load_state_dict(model_dict)
 
 
         self.fire3 = fire_module(ch[3], ch[3]//4, ch[3]//2)
@@ -54,7 +53,7 @@ class Polyp_Net(nn.Module):
         self.resfire_ag1 = residual_fire_module(ch[1], ch[0]//4, ch[0]//2)
 
         # self.conv1 = conv_block(ch[1], ch[0], kernel_size=3, padding=0)
-        self.head = nn.Conv2d(ch[1], num_classes, kernel_size=1, padding=0)
+        self.head = nn.Conv2d(ch[1], 1, kernel_size=1, padding=0)
 
         self.up4x = nn.Upsample(scale_factor=4)
         self.up = nn.Upsample(scale_factor=2)

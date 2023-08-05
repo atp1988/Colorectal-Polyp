@@ -25,7 +25,7 @@ from datetime import datetime
 from absl import app, flags, logging
 from absl.flags import FLAGS
 
-from utils import *
+from utils import AverageMeter, IoU, Dice, Checkpoint
 from loss import *
 from net import Polyp_Net
 from dataloader import DataLoader
@@ -34,7 +34,7 @@ from dataloader import DataLoader
 
 flags.DEFINE_string('dataset', '', 'path to dataset')
 
-# flags.DEFINE_string('weights', './checkpoints/yolov3.tf','path to weights file')
+flags.DEFINE_string('pvt2_weights', None, 'path to weights file')
 
 flags.DEFINE_string('model_name', 'ckpt_polyp', 'name of the model to save checkpoints')
 flags.DEFINE_string('device', 'cpu', 'device: cuda or cpu')
@@ -42,11 +42,10 @@ flags.DEFINE_string('device', 'cpu', 'device: cuda or cpu')
 flags.DEFINE_boolean('transform_train', True, 'train set transfrom ')
 flags.DEFINE_boolean('transform_test', False, 'test set transfrom ')
 flags.DEFINE_integer('image_size', 352, 'image size')
-flags.DEFINE_integer('epochs', 50, 'number of epochs')\
+flags.DEFINE_integer('epochs', 50, 'number of epochs')
 flags.DEFINE_integer('batch_size', 10, 'batch size')
 flags.DEFINE_float('learning_rate', 5e-4, 'learning rate')
 flags.DEFINE_float('weight_decay', 1e-4, 'weight_decay')
-flags.DEFINE_integer('num_classes', 1, 'number of classes')
 
 def main(_argv):
 
@@ -158,18 +157,18 @@ def main(_argv):
     print('Initialzing and Training Process Started...')
 
     # writer = SummaryWriter()
-    net = Polyp_Net(num_classes=FLAGS.num_classes)
+    net = Polyp_Net(backbone_weights=FLAGS.pvt2_weights)
     net = net.to(FLAGS.device)
 
     checkpoint = Checkpoint(FLAGS.model_name, net)
     
     optimizer = optim.AdamW(net.parameters(), lr=FLAGS.learning_rate, weight_decay=FLAGS.weight_decay)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 
-                                                        mode='min', 
-                                                        factor=0.2, 
-                                                        patience=3,
-                                                        min_lr=0, 
-                                                        verbose=False)
+                                                            mode='min', 
+                                                            factor=0.2, 
+                                                            patience=3,
+                                                            min_lr=0, 
+                                                            verbose=False)
     
     train_loader = DataLoader(dataset_name='',
                               path = FLAGS.dataset,

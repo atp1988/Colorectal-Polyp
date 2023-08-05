@@ -22,21 +22,21 @@ from absl import app, flags, logging
 from absl.flags import FLAGS
 
 
-from utils import _totensor, Dice
-from loss import *
-from net import Polyp_Net
-from dataloader import DataLoader
+from src.utils import _totensor, Dice
+from src.loss import *
+from src.net import Polyp_Net
+from src.dataloader import DataLoader
 
 flags.DEFINE_string('image_path', 'sessile-main-Kvasir-SEG/images/cju0qoxqj9q6s0835b43399p4.jpg', 'the image path')
 flags.DEFINE_string('mask_path', 'sessile-main-Kvasir-SEG/masks/cju0qoxqj9q6s0835b43399p4.jpg', 'the mask path')
 flags.DEFINE_string('weight_path', 'ckpt_pvt2_Decoder_2.pth', 'the weight path')
 flags.DEFINE_string('device', 'cpu', 'device: cuda or cpu')
 flags.DEFINE_integer('image_size', 352, 'image size')
-## preprocessing an image
+
 
 def main(_argv):
 
-    model = Polyp_Net(num_classes=1)
+    model = Polyp_Net()
     model.load_state_dict(torch.load(FLAGS.weight_path, map_location=FLAGS.device)['net'])
     model.eval()
 
