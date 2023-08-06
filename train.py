@@ -33,15 +33,15 @@ from dataloader import DataLoader
 
 # device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-flags.DEFINE_string('dataset', '', 'path to dataset')
+flags.DEFINE_string('dataset', 'polyp_dataset/', 'path to dataset')
 
-flags.DEFINE_string('pvt2_weights', None, 'path to weights file')
+flags.DEFINE_string('backbone_weights', 'weights/', 'path to weights file')
 
 flags.DEFINE_string('model_name', 'ckpt_polyp', 'name of the model to save checkpoints')
 flags.DEFINE_string('device', 'cpu', 'device: cuda or cpu')
 
 flags.DEFINE_boolean('transform_train', True, 'train set transfrom ')
-flags.DEFINE_boolean('transform_test', False, 'test set transfrom ')
+flags.DEFINE_boolean('transform_test', True, 'test set transfrom ')
 flags.DEFINE_integer('image_size', 352, 'image size')
 flags.DEFINE_integer('epochs', 50, 'number of epochs')
 flags.DEFINE_integer('batch_size', 10, 'batch size')

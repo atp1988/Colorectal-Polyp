@@ -128,7 +128,7 @@ class Checkpoint(object):
     def __init__(self, model_name, net):
         '''dice = Dice'''
         self.best_dice = 0.
-        self.folder = 'checkpoint'
+        self.folder = 'checkpoints'
         self.net = net
         self.model_name = model_name
         os.makedirs(self.folder, exist_ok=True)
