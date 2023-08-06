@@ -43,7 +43,11 @@ for training with default set up please only run:
 python train.py
 ```
 
+<<<<<<< HEAD
 #### Command Line Args Reference to change training parameters
+=======
+## Command Line Args Reference to change training parameters
+>>>>>>> f6b71a1103730de93625c7ccc02db42ba7d8c23a
 ```bash
 train.py:
   --dataset: path to dataset
@@ -66,10 +70,17 @@ train.py:
   --weight_decay: weight decay
     (default: '0.0001')
     (a float number)
+<<<<<<< HEAD
   --transfrom_train: train set data transfrom
     (default: 'True')
     (a boolean)
   --transfrom_test: test set data transfrom
+=======
+  --transfrom_train: data transfrom for train set
+    (default: 'True')
+    (a boolean)
+  --transfrom_test: data transfrom for test set
+>>>>>>> f6b71a1103730de93625c7ccc02db42ba7d8c23a
     (default: 'True')
     (a boolean)
   --size: image_size
