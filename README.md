@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
 ### Detection
 
-Before to test the model, please download the pretrained weight from here: [Google Drive](https://drive.google.com/uc?export=download&id=1-OBlpRqGbt3-OIgdH5JbuzChwmKWCxa8)
+Before to test the model, please download the pretrained weight from here: [Google Drive](https://drive.google.com/uc?export=download&id=1-OBlpRqGbt3-OIgdH5JbuzChwmKWCxa8) and move it to the 'checkpoints/' directory.
 
 ```bash
 python test.py --image_path data/images/xxx.jpg --mask_path data/masks/xxx.jpg 
@@ -36,9 +36,9 @@ python test.py --image_path data/images/xxx.jpg --mask_path data/masks/xxx.jpg
 
 Before to start training, please download the backbone weights and polyp dataset from here:
 
-- [x] Download polyp dataset includes train and test directories: [Google Drive](https://drive.google.com/file/d/1pFxb9NbM8mj_rlSawTlcXG1OdVGAbRQC/view?usp=sharing) and move them to the './polyp_dataset/'.
+- [x] Download polyp dataset includes train and test directories: [Google Drive](https://drive.google.com/file/d/1pFxb9NbM8mj_rlSawTlcXG1OdVGAbRQC/view?usp=sharing) and move them to the './polyp_dataset/' directory.
 
-- [x] Download the pretrained PVT-Version2 model: [Google Drive](https://drive.google.com/drive/folders/1Eu8v9vMRvt-dyCH0XSV2i77lAd62nPXV?usp=sharing), and then move it to the './weights/' folder for initialization. 
+- [x] Download the pretrained PVT-Version2 model: [Google Drive](https://drive.google.com/drive/folders/1Eu8v9vMRvt-dyCH0XSV2i77lAd62nPXV?usp=sharing), and then move it to the './weights/' directory for initialization. 
 
 for training with default set up please only run:
 ```bash

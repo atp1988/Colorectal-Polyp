@@ -31,7 +31,7 @@ from src.dataloader import DataLoader
 
 flags.DEFINE_string('image_path', 'sessile-main-Kvasir-SEG/images/cju0qoxqj9q6s0835b43399p4.jpg', 'the image path')
 flags.DEFINE_string('mask_path', 'sessile-main-Kvasir-SEG/masks/cju0qoxqj9q6s0835b43399p4.jpg', 'the mask path')
-flags.DEFINE_string('weight_path', 'ckpt_pvt2_Decoder_2.pth', 'the weight path')
+flags.DEFINE_string('weight_path', 'checkpoints/ckpt_pvt2_Decoder_2.pth', 'the weight path')
 flags.DEFINE_string('device', 'cpu', 'device: cuda or cpu')
 flags.DEFINE_integer('image_size', 352, 'image size')
 
