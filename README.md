@@ -4,6 +4,8 @@
 
 This repo provides a clean implementation of Polyp Segmentation in Pytorch on standard and real polyp datasets.
 
+![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/images/model.png)
+
 ## Key Features
 
 - [x] Executable using PyTorch 
@@ -14,7 +16,7 @@ This repo provides a clean implementation of Polyp Segmentation in Pytorch on st
 - [x] Clean implementation
 - [x] MIT License
 
-![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/predictions/pred5.png)
+![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/images/pred6.png)
 
 #### Dependency Installation
 
@@ -30,7 +32,7 @@ Before to test the model, please download the pretrained weight from here: [Goog
 python test.py --image_path data/images/xxx.jpg --mask_path data/masks/xxx.jpg 
 ```
 
-![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/predictions/pred4.png)
+![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/images/pred4.png)
 
 ### Training Procedure
 
