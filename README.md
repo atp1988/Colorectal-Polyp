@@ -24,6 +24,8 @@ pip install -r requirements.txt
 
 ### Detection
 
+Before to test the model, please download the pretrained weight from here: [Google Drive](https://drive.google.com/uc?export=download&id=1-OBlpRqGbt3-OIgdH5JbuzChwmKWCxa8)
+
 ```bash
 python test.py --image_path data/images/xxx.jpg --mask_path data/masks/xxx.jpg 
 ```
