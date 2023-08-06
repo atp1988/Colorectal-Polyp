@@ -67,14 +67,10 @@ train.py:
   --weight_decay: weight decay
     (default: '0.0001')
     (a float number)
-  --transfrom_train: train set data transfrom
+  --transfrom_train: train dataset transfrom
     (default: 'True')
     (a boolean)
-  --transfrom_test: train set data transfrom
-  --transfrom_train: data transfrom for train set
-    (default: 'True')
-    (a boolean)
-  --transfrom_test: test set data transfrom
+  --transfrom_test: test dataset transfrom
     (default: 'True')
     (a boolean)
   --size: image_size
