@@ -70,11 +70,11 @@ train.py:
   --transfrom_train: train set data transfrom
     (default: 'True')
     (a boolean)
-  --transfrom_test: test set data transfrom
+  --transfrom_test: train set data transfrom
   --transfrom_train: data transfrom for train set
     (default: 'True')
     (a boolean)
-  --transfrom_test: data transfrom for test set
+  --transfrom_test: test set data transfrom
     (default: 'True')
     (a boolean)
   --size: image_size
