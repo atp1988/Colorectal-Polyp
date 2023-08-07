@@ -39,35 +39,20 @@ model.eval()
 ##---------------------------------------------------------------
 app = FastAPI()
 
-## mask
-@app.post('/GroundTruth')
-async def predict(file: UploadFile=File(...)):
+def double_plot_images(image1: Image.Image) -> Image.Image:
+    total_width = image1.width + image1.width
+    max_height = max(image1.height, image1.height)
+
+    new_image = Image.new("RGB", (total_width, max_height))
+    new_image.paste(image1, (0, 0))
     
-    contents = await file.read()
-    mask = Image.open(BytesIO(contents)).convert("RGB")
-    mask = mask.resize((352,352))
-    # segmented_image = Image.fromarray(pred)
-    bytes_io = BytesIO()
-    mask.save(bytes_io, format="JPEG")
-
-    return Response(bytes_io.getvalue(), media_type="image/jpeg")
-
-
-@app.post('/Prediction')
-async def predict(file: UploadFile=File(...)):
-    
-    contents = await file.read()
-    image = Image.open(BytesIO(contents)).convert("RGB")
-
-    torch_tensor = _load_image(image)   ## NCHW
+    image = np.array(image1)
+    image = cv2.resize(image, (352,352))
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    torch_tensor = _totensor(image)
+    torch_tensor = torch_tensor.unsqueeze(dim=0)  ## NCHW
     out = model(torch_tensor)
     out = torch.sigmoid(out)
-
-    # dice = Dice()
-    # dice_score = dice(out, target.type(torch.int64))
-
-    # print(f'Dice: {dice_score}')
-    # print('\n')
 
     ## convert torch tensor to numpy array
     pred = torch.permute(out, (0,2,3,1)) ## NCHW
@@ -80,9 +65,25 @@ async def predict(file: UploadFile=File(...)):
     pred = np.array(pred)
 
     segmented_image = Image.fromarray(pred)
-    bytes_io = BytesIO()
-    segmented_image.save(bytes_io, format="JPEG")
 
-    return Response(bytes_io.getvalue(), media_type="image/jpeg")
+    new_image.paste(segmented_image, (image1.width, 0))
 
+    return new_image
 
+@app.post("/double_plot_images/")
+async def upload_images(image1: UploadFile = File(...)):
+    image1_path = f"temp_{image1.filename}"
+
+    with open(image1_path, "wb") as f1:
+        f1.write(image1.file.read())
+
+    pil_image1 = Image.open(image1_path)
+    pil_image1 = pil_image1.resize((352,352))
+    
+    plotted_image = double_plot_images(pil_image1)
+
+    # Save the plotted image temporarily
+    output_image_path = "output_plot.jpg"
+    plotted_image.save(output_image_path, "JPEG")
+
+    return FileResponse(output_image_path, media_type="image/jpeg")
