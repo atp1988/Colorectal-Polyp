@@ -34,6 +34,16 @@ python test.py --image_path data/images/xxx.jpg --mask_path data/masks/xxx.jpg
 
 ![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/images/pred4.png)
 
+### Serving
+
+you are able to watch the segmentation of a colon polyp using FastApi as a Demo. 
+But you just need the pretrained weights downloading from here: [Google Drive](https://drive.google.com/uc?export=download&id=1-OBlpRqGbt3-OIgdH5JbuzChwmKWCxa8) and move it to the 'checkpoints/' directory and then run:
+
+```bash
+python server.py 
+```
+![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/images/fastapi1.png)
+
 ### Training Procedure
 
 Before to start training, please download the backbone weights and polyp dataset from here:
