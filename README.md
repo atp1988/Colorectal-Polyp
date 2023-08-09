@@ -42,6 +42,8 @@ But you just need the pretrained weights downloading from here: [Google Drive](h
 ```bash
 python server.py 
 ```
+after execution the pyhon script you shoud open an browser and browse `http://127.0.0.1:8000/docs`. and then push `Try it out` botton to appear `Choose File` botton, then enjoy it.
+
 ![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/images/fastapi1.png)
 
 ### Training Procedure
