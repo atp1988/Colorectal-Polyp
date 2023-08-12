@@ -18,6 +18,8 @@ This repo provides a clean implementation of Polyp Segmentation in Pytorch on st
 
 ![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/images/pred6.png)
 
+
+## How to run
 #### Dependency Installation
 
 ```bash
@@ -34,7 +36,7 @@ python test.py --image_path data/images/xxx.jpg --mask_path data/masks/xxx.jpg
 
 ![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/images/pred4.png)
 
-### Serving
+### FastApi 
 
 you are able to watch the segmentation of a colon polyp using FastApi as a Demo. 
 But you just need the pretrained weights downloading from here: [Google Drive](https://drive.google.com/uc?export=download&id=1-OBlpRqGbt3-OIgdH5JbuzChwmKWCxa8) and move it to the 'checkpoints/' directory and then run:
@@ -42,11 +44,19 @@ But you just need the pretrained weights downloading from here: [Google Drive](h
 ```bash
 python server.py 
 ```
-after execution the pyhon script you shoud open a browser and browse `http://127.0.0.1:8000/docs`. and then push `Try it out` botton to appear `Choose File` botton, then enjoy it.
+or you should create an docker image through below commands:
+
+```bash
+docker build -t polyp-fastapi .
+docker run -p 8000:8000 -t polyp-fastapi
+```
+
+after execution, open a browser and browse `http://127.0.0.1:8000/docs`. and then push `Try it out` botton to appear `Choose File` botton, then enjoy it.
 
 ![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/images/fastapi1.png)
 
-### Training Procedure
+
+## How to train
 
 Before to start training, please download the backbone weights and polyp dataset from here:
 
