@@ -1,20 +1,32 @@
-# Gastrointestinal Polyp Segmentation in PyTorch
+# Colorectal Polyp Segmentation in PyTorch
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/atp1988/gastrointestinal-polyp/blob/main/Polyp-Net.ipynb)
 
 This repo provides a clean implementation of Polyp Segmentation in Pytorch on standard and real polyp datasets.
 
-![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/images/model.png)
+![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/images/net.png)
 
 ## Key Features
 
-- [x] Executable using PyTorch 
-- [x] `Polyp-Net` with pre-trained Weights
+- [x] Executable, Clean and simple implementation using PyTorch 
+- [x] `Pyramid Vision Transformer` (PVT) as a backbone for medical segmentation task
+	- [x] Multi-Scale Contextual Information, capture contextual information at different scales
+	- [x] Handling of Fine Details, capture fine-grained details at various resolutions
+	- [x] PVT's self-attention mechanism enables it to consider global context understanding the relationship between different regions for accurate segmentation
+	- [x] Transfer Learning, using pretrained PVT models and fine tune on a polyp datasets help to leverage the knowledge acquired from diverse data sources, improve the model's segmentation performance and reduce computational costs due to fast convergence
+- [x] `Atrous Spatial Pyramid Pooling` or ASPP module
+	- [x] capture information at multiple spatial scales
+	- [x] adjust the receptive field size to extract features in various object sizes
+	- [x] prohibited from loss of fine-grained details with reduction of number of downsampler blocks
+	- [x] improved boundary prediction, sharper and more accurate object masks
+	- [x] computational overhead reduction 
+- [x] `Convolutional Block Attention Module` or CBAM module
+	- [x] highlight important spatial locations and channels within feature maps
+	- [x] better object recognition with focusing on discriminative regions and ignore irrelevant information.
+	- [x] better generalization, By learning to attend to relevant features being robust to trandformation, leading to better performance to unseen data
+	- [x] be easily integrated into CNN models without major architectural changes
 - [x] Inference example with GUI on FastAPI
-- [x] GPU Accelerated 
 - [x] Fully integrated with `absl-py` from [abseil.io](https://abseil.io)
-- [x] Clean implementation
-- [x] MIT License
 
 ![demo](https://github.com/atp1988/gastrointestinal-polyp/blob/main/images/pred6.png)
 
